@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="">
+<head>
+    <meta charset="utf-8">
+    <title>PERSON</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <a href="#" class="navbar-brand mx-auto">PERSON</a>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mt-4 card">
+            <form action="/person" method="post"   data-toggle="validator" class="card-body" id="myForm">
+                <h3 class="card-title">Asistencia Diligentes</h3>
+                <div class="form-group">
+                    <select class="custom-select" name="person_id" required >
+                        <option value="">Seleccione Nombre</option>
+                        <% for(var i = 0; i < person.length; i++){ %>
+                        <option value="<%= person[i].id %>" ><%= person[i].surname + ',' + person[i].name %></option>
+                        <% } %>
+
+                    </select>
+                    <div class="invalid-feedback">Debe seleccionar un nombre</div>
+                </div>
+
+
+                <fieldset class="form-group row card">
+
+                    <legend class="col-form-legend col-sm-3">Miercoles</legend>
+                    <div class="col-sm-10">
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input" id="grPPm" name="attnd_wed" value="PP" onclick="hiddenReason('reasonM', 'reasonMS')" required>
+                            <label class="custom-control-label" for="grPPm">PP</label>
+                        </div>
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input" id="grPnPm" name="attnd_wed" value="PnP" onclick="showReason('reasonM')" required>
+                            <label class="custom-control-label" for="grPnPm">PnP</label>
+                        </div>
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input" id="grAAm" name="attnd_wed" value="AA" onclick="showReason('reasonM')" required>
+                            <label class="custom-control-label" for="grAAm">AA</label>
+                        </div>
+                        <div class="invalid-feedback">More example invalid feedback text</div>
+                        <div id="reasonM" class="d-lg-none">
+                            <div class="form-group">
+                                <select class="custom-select" name="reason_wed_id" id="reasonMS" required >
+                                    <option value="">Seleccione Motivo</option>
+                                    <% for(var i = 0; i < reason.length; i++){ %>
+                                    <option value="<%= reason[i].id %>" ><%= reason[i].name %></option>
+                                    <% } %>
+
+                                </select>
+                                <div class="invalid-feedback">Debe seleccionar Motivo</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="form-group row card">
+
+                    <legend class="col-form-legend col-sm-3">Sabado</legend>
+                    <div class="col-sm-10">
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input" id="grPPs" name="attnd_sat" value="PP" onclick="hiddenReason('reasonS', 'reasonSS')" required>
+                            <label class="custom-control-label" for="grPPs">PP</label>
+                        </div>
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input" id="grPnPs" name="attnd_sat" value="PnP" onclick="showReason('reasonS')" required>
+                            <label class="custom-control-label" for="grPnPs">PnP</label>
+                        </div>
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input" id="grAAs" name="attnd_sat" value="AA" onclick="showReason('reasonS')" required>
+                            <label class="custom-control-label" for="grAAs">AA</label>
+                        </div>
+                        <div class="invalid-feedback">More example invalid feedback text</div>
+                        <div id="reasonS" class="d-lg-none">
+                            <div class="form-group">
+                                <select class="custom-select" name="reason_sat_id" id="reasonSS" required >
+                                    <option value="">Seleccione Motivo</option>
+                                    <% for(var i = 0; i < reason.length; i++){ %>
+                                    <option value="<%= reason[i].id %>" ><%= reason[i].name %></option>
+                                    <% } %>
+
+                                </select>
+                                <div class="invalid-feedback">Debe seleccionar un Motivo</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="form-group row card">
+
+                    <legend class="col-form-legend col-sm-3">Domingo</legend>
+                    <div class="col-sm-10">
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input" id="grPPd" name="attnd_sun" value="PP" onclick="hiddenReason('reasonD', 'reasonDS')" required>
+                            <label class="custom-control-label" for="grPPd">PP</label>
+                        </div>
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input" id="grPnPd" name="attnd_sun" value="PnP" onclick="showReason('reasonD')" required>
+                            <label class="custom-control-label" for="grPnPd">PnP</label>
+                        </div>
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input" id="grAAd" name="attnd_sun" value="AA" onclick="showReason('reasonD')" required>
+                            <label class="custom-control-label" for="grAAd">AA</label>
+                        </div>
+                        <div class="invalid-feedback">More example invalid feedback text</div>
+                        <div id="reasonD" class="d-lg-none">
+                            <div class="form-group">
+                                <select class="custom-select" name="reason_sun_id" id="reasonDS" required >
+                                    <option value="">Seleccione Motivo</option>
+                                    <% for(var i = 0; i < reason.length; i++){ %>
+                                    <option value="<%= reason[i].id %>" ><%= reason[i].name %></option>
+                                    <% } %>
+
+                                </select>
+                                <div class="invalid-feedback">Debe seleccionar un Motivo</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </fieldset>
+
+
+
+                <input type="submit" value="Cargar" class="btn btn-primary" id="btnSubmit">
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+</body>
+
+<script>
+    $("#btnSubmit").click(function(event) {
+
+        // Fetch form to apply custom Bootstrap validation
+        var form = $("#myForm")
+
+        if (form[0].checkValidity() === false) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.addClass('was-validated');
+        // Perform ajax submit here...
+
+    });
+
+    function showReason(id) {
+        document.getElementById(id).className= 'd-lg-block';
+
+
+    }
+    function hiddenReason(divId, selectId) {
+        document.getElementById(divId).className= 'd-lg-none';
+        document.getElementById(selectId).removeAttribute("required");
+    }
+</script>
+
+
+</html>
